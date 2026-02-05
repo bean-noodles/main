@@ -1,6 +1,13 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+
+.badge-mount {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
 .mainBadge {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -14,20 +21,12 @@
   color: white;
   width: 58px;
   height: 20px;
+  vertical-align: middle;
 }
 
 .badge-icon {
   width: 16px;
   height: 16px;
-}
-
-.h3-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  line-height: normal;
 }
 
 .badge-green {

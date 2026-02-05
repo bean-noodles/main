@@ -19,15 +19,9 @@ function injectReactButton() {
     const link = anchor.href;
     if (!title || !link) return;
 
-    const wrapper = document.createElement("div");
-    wrapper.className = "h3-wrapper";
-
-    h3.parentNode.insertBefore(wrapper, h3);
-
-    wrapper.appendChild(h3);
-
     const mountPoint = document.createElement("span");
-    wrapper.appendChild(mountPoint);
+    mountPoint.className = "badge-mount";
+    h3.appendChild(mountPoint);
 
     const root = createRoot(mountPoint);
     root.render(<ColorButton title={title} link={link} />);
