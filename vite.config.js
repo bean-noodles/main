@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
+    assetsInlineLimit: 10000, // 10KB 이하 파일은 Base64로 인라인
     cssCodeSplit: true,
     rollupOptions: {
       input: {
