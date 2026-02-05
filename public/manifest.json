@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Inline Search UI",
+  "version": "1.0.0",
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search*"],
+      "js": ["contentScript.js"],
+      "css": ["contentStyle.css"]
+    }
+  ]
+}

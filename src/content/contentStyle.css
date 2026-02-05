@@ -1,0 +1,59 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+.mainBadge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Pretendard Variable";
+  color: white;
+  width: 58px;
+  height: 20px;
+}
+
+.badge-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.h3-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+.badge-green {
+  background-color: #059669;
+}
+
+.badge-green:hover {
+  background-color: #047857;
+}
+
+.badge-yellow {
+  background-color: #ca8a04;
+}
+
+.badge-yellow:hover {
+  background-color: #a16207;
+}
+
+.badge-red {
+  background-color: #dc2626;
+}
+
+.badge-red:hover {
+  background-color: #b91c1c;
+}
+
+.badge-grey {
+  background-color: #525252;
+}
