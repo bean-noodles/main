@@ -9,7 +9,7 @@ const STATUS = [
   { label: "안전", color: "green", icon: greenIcon },
   { label: "주의", color: "yellow", icon: yellowIcon },
   { label: "위험", color: "red", icon: redIcon },
-  { label: "검사 중", color: "grey", icon: greyIcon },
+  { label: "검사", color: "grey", icon: greyIcon },
 ];
 
 export default function ColorButton({ title, link }) {
