@@ -14,6 +14,7 @@ export default defineConfig({
     outDir: "dist",
     rollupOptions: {
       input: {
+        popup: resolve(__dirname, "src/popup.jsx"),
         contentScript: resolve(__dirname, "src/content/contentScript.jsx"),
       },
       output: {
