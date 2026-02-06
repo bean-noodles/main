@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import redIcon from "../assets/icon/red.svg";
-import yellowIcon from "../assets/icon/yellow.svg";
-import greenIcon from "../assets/icon/green.svg";
-import greyIcon from "../assets/icon/grey.svg";
+import redIcon from "../assets/icon/red.svg?inline";
+import yellowIcon from "../assets/icon/yellow.svg?inline";
+import greenIcon from "../assets/icon/green.svg?inline";
+import greyIcon from "../assets/icon/grey.svg?inline";
 
 const STATUS = [
   { label: "안전", color: "green", icon: greenIcon },

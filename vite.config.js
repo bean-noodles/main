@@ -1,24 +1,30 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { resolve } from "path";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [{ src: "src/popup.html", dest: "." }],
+    }),
+  ],
   build: {
-    assetsInlineLimit: 10000, // 10KB 이하 파일은 Base64로 인라인
-    cssCodeSplit: true,
+    outDir: "dist",
     rollupOptions: {
       input: {
-        contentScript: "src/content/contentScript.jsx",
+        contentScript: resolve(__dirname, "src/content/contentScript.jsx"),
       },
       output: {
         entryFileNames: "[name].js",
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith(".css")) {
-            return "contentStyle.css";
-          }
-          return "[name].[ext]";
+          if (assetInfo.name?.endsWith(".css")) return "contentStyle.css";
+          return "assets/[name][extname]";
         },
       },
     },
+    target: "esnext",
+    assetsInlineLimit: 0,
   },
 });
