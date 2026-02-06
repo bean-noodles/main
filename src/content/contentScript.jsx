@@ -1,4 +1,4 @@
-import "./contentStyle.css";
+import "../../public/contentStyle.css";
 import { createRoot } from "react-dom/client";
 import ColorButton from "./colorButton";
 
@@ -42,7 +42,6 @@ function collectSearchResults() {
 
     const resultBlock =
       h3.closest("div[jscontroller]") || h3.closest("div[data-snhf]");
-
     if (!resultBlock) return;
 
     const descriptionEl =
@@ -52,7 +51,6 @@ function collectSearchResults() {
       null;
 
     const rawDescription = descriptionEl ? descriptionEl.innerText.trim() : "";
-
     const description = cleanDescription(rawDescription);
 
     results.push({
@@ -65,18 +63,28 @@ function collectSearchResults() {
   return results;
 }
 
+function updateResultsStorage() {
+  const results = collectSearchResults();
+  chrome.storage.local.set({ searchResults: results });
+}
+
 injectReactButton();
-console.log(collectSearchResults());
+updateResultsStorage();
 
 const observer = new MutationObserver(() => {
   injectReactButton();
+  updateResultsStorage();
 });
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true,
-});
+observer.observe(document.body, { childList: true, subtree: true });
 
 function cleanDescription(text) {
   return text.replace(/^\d{4}\.\s*\d{1,2}\.\s*\d{1,2}\.\s*—\s*/, "");
 }
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === "GET_RESULTS") {
+    const results = collectSearchResults();
+    sendResponse({ results });
+  }
+});
