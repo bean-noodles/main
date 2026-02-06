@@ -1,8 +1,7 @@
-import "../../public/contentStyle.css";
 import { createRoot } from "react-dom/client";
 import ColorButton from "./colorButton";
 
-console.log("contentScript loaded");
+console.log("Content script loaded");
 
 function injectReactButton() {
   const h3List = document.querySelectorAll("a h3");
@@ -53,11 +52,8 @@ function collectSearchResults() {
     const rawDescription = descriptionEl ? descriptionEl.innerText.trim() : "";
     const description = cleanDescription(rawDescription);
 
-    results.push({
-      title,
-      link,
-      description,
-    });
+    results.push({ title, link, description, badgeInfo: { title, link } });
+    chrome.storage.local.set({ searchResults: results });
   });
 
   return results;
@@ -65,6 +61,7 @@ function collectSearchResults() {
 
 function updateResultsStorage() {
   const results = collectSearchResults();
+  console.log("Content script results:", results);
   chrome.storage.local.set({ searchResults: results });
 }
 
@@ -75,16 +72,8 @@ const observer = new MutationObserver(() => {
   injectReactButton();
   updateResultsStorage();
 });
-
 observer.observe(document.body, { childList: true, subtree: true });
 
 function cleanDescription(text) {
   return text.replace(/^\d{4}\.\s*\d{1,2}\.\s*\d{1,2}\.\s*—\s*/, "");
 }
-
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  if (msg.type === "GET_RESULTS") {
-    const results = collectSearchResults();
-    sendResponse({ results });
-  }
-});
