@@ -13,10 +13,27 @@
 
 .popup-header-wrapper {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: nowrap;
 }
+
 .popup-header-icon {
   width: 118px;
   height: 32px;
+  flex-shrink: 0;
+}
+
+.popup-header-right-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.popup-header-right-icon {
+  width: 24px;
+  height: 24px;
 }
