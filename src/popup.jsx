@@ -1,9 +1,8 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/popup.css";
 import headerIcon from "../public/popup-header.svg";
 
-function Popup() {
+export default function Popup() {
   return (
     <div className="popup-container">
       <div className="popup-header-wrapper">
