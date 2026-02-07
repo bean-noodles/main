@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="./logo.svg" alt="Recon Extension Logo" width="120" />
-  <h1>Recon Extension</h1>
+  <img src="./logo.svg" alt="Recon Extension Logo" width="180" />
+
   <p><strong>사용자의 웹서핑 경험에 안전을 보장합니다.</strong></p>
   <p>피싱 위험이 있는 웹사이트를 실시간으로 탐지하고 차단하여 안전한 인터넷 환경을 제공하는 브라우저 확장 프로그램입니다.</p>
 
@@ -19,8 +19,6 @@
     </a>
   </p>
 </div>
-
----
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
