@@ -73,10 +73,13 @@ import "@src/Popup.css";
 import { withErrorBoundary, withSuspense } from "@extension/shared";
 import { ErrorDisplay, LoadingSpinner } from "@extension/ui";
 import Header from "@src/components/Header/Header";
+import MainPage from "@src/components/MainPage/MainPage";
+
 const Popup = () => {
   return (
     <>
       <Header />
+      <MainPage />
     </>
   );
 };
