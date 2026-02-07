@@ -86,7 +86,8 @@ const Popup = () => {
           },
         );
 
-        const existingUser = await checkUserResponse.json();
+        const responseText = await checkUserResponse.text();
+        const existingUser = responseText ? JSON.parse(responseText) : null;
 
         if (existingUser) {
           // User exists -> Welcome Back
@@ -110,9 +111,14 @@ const Popup = () => {
           setPage("register_success");
         }
       } catch (backendError) {
-        console.error("Backend error:", backendError);
+        console.error("Backend error details:", backendError);
+        if (backendError instanceof TypeError) {
+          console.error("Network error or CORS issue likely.");
+        }
         // Fallback or error handling
-        alert("Failed to connect to server. Please try again.");
+        alert(
+          `Failed to connect to server: ${backendError instanceof Error ? backendError.message : String(backendError)}`,
+        );
       }
     } catch (error) {
       console.error("Login failed:", error);
