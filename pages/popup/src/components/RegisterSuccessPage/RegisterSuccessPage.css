@@ -1,0 +1,70 @@
+/* RegisterSuccessPage.css */
+
+.register-success-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 16px;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+@media (prefers-color-scheme: dark) {
+  .success-title {
+    color: #f3f4f6;
+  }
+}
+
+.success-subtitle {
+  font-size: 16px;
+  color: #4b5563;
+  margin-bottom: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .success-subtitle {
+    color: #9ca3af;
+  }
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  width: 100%;
+  max-width: 320px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.start-button:hover {
+  background-color: #333333;
+}
+
+.start-button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-button-text {
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+}

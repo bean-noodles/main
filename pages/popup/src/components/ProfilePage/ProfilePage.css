@@ -31,16 +31,34 @@
 
 /* 프로필 이미지 */
 .profile-image {
-  width: 128px;
-  height: 128px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 24px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* 사용자 이름 */
 .profile-name {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
+  margin-bottom: 4px;
+  color: black;
+}
+
+.profile-email {
+  font-size: 16px;
+  color: #666;
   margin-bottom: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile-name {
+    color: white;
+  }
+  .profile-email {
+    color: #aaa;
+  }
 }
 
 /* 로그아웃 버튼 */

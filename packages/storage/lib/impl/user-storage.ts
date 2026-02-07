@@ -11,6 +11,7 @@ interface UserStateType {
   isLoggedIn: boolean;
   user: UserInfo | null;
   accessToken: string | null;
+  lastLogin: number | null;
 }
 
 const storage = createStorage<UserStateType>(
@@ -19,6 +20,7 @@ const storage = createStorage<UserStateType>(
     isLoggedIn: false,
     user: null,
     accessToken: null,
+    lastLogin: null,
   },
   {
     storageEnum: StorageEnum.Local,
@@ -38,6 +40,7 @@ const userStorage: UserStorageType = {
       isLoggedIn: true,
       user,
       accessToken,
+      lastLogin: Date.now(),
     });
   },
   logout: async () => {
@@ -45,6 +48,7 @@ const userStorage: UserStorageType = {
       isLoggedIn: false,
       user: null,
       accessToken: null,
+      lastLogin: null,
     });
   },
 };

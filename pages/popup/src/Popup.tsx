@@ -26,10 +26,27 @@ const Popup = () => {
   const userState = useStorage(userStorage);
 
   useEffect(() => {
-    if (userState.isLoggedIn && page === "login") {
-      setPage("main");
-    }
-  }, [userState.isLoggedIn, page]);
+    const checkSession = async () => {
+      // 1 Month = 30 * 24 * 60 * 60 * 1000 ms
+      const ONE_MONTH_MS = 30 * 24 * 60 * 60 * 1000;
+
+      if (userState.isLoggedIn && userState.lastLogin) {
+        const timeDiff = Date.now() - userState.lastLogin;
+        if (timeDiff > ONE_MONTH_MS) {
+          console.log("Session expired, logging out...");
+          await userStorage.logout();
+          setPage("login");
+          return;
+        }
+      }
+
+      if (userState.isLoggedIn && page === "login") {
+        setPage("main");
+      }
+    };
+
+    checkSession();
+  }, [userState.isLoggedIn, userState.lastLogin, page]);
 
   const handleGoogleLogin = useCallback(async () => {
     setIsLoading(true);

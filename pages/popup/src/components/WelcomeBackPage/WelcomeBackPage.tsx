@@ -1,4 +1,6 @@
 import { UserInfo } from "@extension/storage";
+import "./WelcomeBackPage.css";
+import HeaderWithoutLogin from "../Header/HeaderWithoutLogin";
 
 interface WelcomeBackPageProps {
   user: UserInfo;
@@ -7,31 +9,23 @@ interface WelcomeBackPageProps {
 
 const WelcomeBackPage = ({ user, onContinue }: WelcomeBackPageProps) => {
   return (
-    <div className="flex h-full flex-col items-center justify-center p-4 text-center">
-      <div className="mb-6 overflow-hidden rounded-full border-4 border-white shadow-lg dark:border-gray-700">
-        <img
-          src={user.picture}
-          alt={user.name}
-          className="h-24 w-24 object-cover"
-          referrerPolicy="no-referrer"
-        />
+    <div className="welcome-back-page">
+      <HeaderWithoutLogin />
+      <img
+        src={user.picture}
+        alt={user.name}
+        className="profile-image"
+        referrerPolicy="no-referrer"
+      />
+
+      <div className="profile-name">{user.name}</div>
+      <div className="profile-email">{user.email}</div>
+
+      <div className="continue-button" onClick={onContinue}>
+        <div className="continue-button-content">
+          <div className="continue-button-text">이 계정으로 계속하기</div>
+        </div>
       </div>
-
-      <h2 className="mb-2 text-xl font-bold text-gray-800 dark:text-gray-100">
-        Welcome back, <br />
-        <span className="text-blue-600 dark:text-blue-400">{user.name}</span>
-      </h2>
-
-      <p className="mb-8 text-sm text-gray-600 dark:text-gray-400">
-        {user.email}
-      </p>
-
-      <button
-        onClick={onContinue}
-        className="w-full max-w-xs rounded-lg bg-blue-600 px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-blue-700 active:scale-95"
-      >
-        Continue
-      </button>
     </div>
   );
 };
