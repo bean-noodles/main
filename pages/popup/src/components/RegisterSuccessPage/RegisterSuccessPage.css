@@ -6,37 +6,36 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 16px;
-  text-align: center;
+  font-family: "Pretendard Variable";
 }
 
-.success-icon {
-  font-size: 48px;
+.profile-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: black;
+}
+
+.profile-email {
+  font-size: 16px;
+  color: #666;
   margin-bottom: 24px;
 }
 
-.success-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #1f2937;
-}
-
 @media (prefers-color-scheme: dark) {
-  .success-title {
-    color: #f3f4f6;
+  .profile-name {
+    color: white;
   }
-}
-
-.success-subtitle {
-  font-size: 16px;
-  color: #4b5563;
-  margin-bottom: 32px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .success-subtitle {
-    color: #9ca3af;
+  .profile-email {
+    color: #aaa;
   }
 }
 
@@ -46,9 +45,8 @@
   justify-content: center;
   background-color: #000000;
   width: 100%;
-  max-width: 320px;
-  height: 48px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -65,6 +63,6 @@
 
 .start-button-text {
   color: white;
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 14px;
 }
