@@ -12,6 +12,7 @@ import Logout from "../public/logout.svg";
 function Popup() {
   const [results, setResults] = useState([]);
   const [page, setPage] = useState("main");
+  const [isGoogleHome, setIsGoogleHome] = useState(false);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -27,8 +28,26 @@ function Popup() {
         }
       });
     };
-
     fetchResults();
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs[0] && tabs[0].url) {
+        const url = new URL(tabs[0].url);
+
+        if (url.pathname === "/settings") {
+          setPage("settings");
+        } else if (
+          url.hostname === "www.google.com" &&
+          (url.pathname === "/" || url.pathname === "")
+        ) {
+          setPage("main");
+          setIsGoogleHome(true);
+        } else {
+          setPage("main");
+          setIsGoogleHome(false);
+        }
+      }
+    });
   }, []);
 
   const getDomainFromLink = (link) => {
@@ -245,44 +264,86 @@ function Popup() {
   };
 
   return (
-    <div
-      style={{
-        width: 300,
-        height: page === "settings" ? 250 : page === "profile" ? 350 : 400,
-        fontFamily: "Pretendard Variable, sans-serif",
-        backgroundColor: "white",
-        color: "black",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 16,
-        }}
-      >
-        <img src={headerIcon} style={{ width: 118, height: 32 }} />
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <img
-            src={SettingIcon}
-            style={{ width: 24, height: 24, cursor: "pointer" }}
-            onClick={() => setPage("settings")}
-          />
-          <img
-            src={ProfileIcon}
-            style={{ width: 24, height: 24, cursor: "pointer" }}
-            onClick={() => setPage("profile")}
-          />
+    <div className="main">
+      {isGoogleHome ? (
+        <div
+          style={{
+            width: 300,
+            height: 250,
+            fontFamily: "Pretendard Variable, sans-serif",
+            backgroundColor: "white",
+            color: "black",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 16,
+            }}
+          >
+            <img src={headerIcon} style={{ width: 118, height: 32 }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <img
+                src={SettingIcon}
+                style={{ width: 24, height: 24, cursor: "pointer" }}
+                onClick={() => setPage("settings")}
+              />
+              <img
+                src={ProfileIcon}
+                style={{ width: 24, height: 24, cursor: "pointer" }}
+                onClick={() => setPage("profile")}
+              />
+            </div>
+          </div>
+          {/*검색창여기에*/}
         </div>
-      </div>
-
-      {page === "main" ? (
-        <MainPage />
-      ) : page === "settings" ? (
-        <SettingsPage setPage={setPage} />
       ) : (
-        <ProfilePage />
+        <div
+          style={{
+            width: 300,
+            height: page === "settings" ? 250 : page === "profile" ? 350 : 400,
+            fontFamily: "Pretendard Variable, sans-serif",
+            backgroundColor: "white",
+            color: "black",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 16,
+            }}
+          >
+            <img src={headerIcon} style={{ width: 118, height: 32 }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <img
+                src={SettingIcon}
+                style={{ width: 24, height: 24, cursor: "pointer" }}
+                onClick={() => setPage("settings")}
+              />
+              <img
+                src={ProfileIcon}
+                style={{ width: 24, height: 24, cursor: "pointer" }}
+                onClick={() => setPage("profile")}
+              />
+            </div>
+          </div>
+
+          {page === "main" ? (
+            <MainPage />
+          ) : page === "settings" ? (
+            <SettingsPage setPage={setPage} />
+          ) : (
+            <ProfilePage />
+          )}
+
+          {/*검색창여기에*/}
+        </div>
       )}
     </div>
   );
