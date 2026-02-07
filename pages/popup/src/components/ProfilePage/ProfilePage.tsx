@@ -5,7 +5,7 @@ import { userStorage } from "@extension/storage";
 import { useStorage } from "@extension/shared";
 
 interface ProfilePageProps {
-  setPage: (page: "main" | "settings" | "profile") => void;
+  setPage: (page: "main" | "settings" | "profile" | "login") => void;
 }
 
 export default function ProfilePage({ setPage }: ProfilePageProps) {
@@ -14,7 +14,7 @@ export default function ProfilePage({ setPage }: ProfilePageProps) {
 
   const handleLogout = async () => {
     await userStorage.logout();
-    setPage("main"); // Popup.tsx will redirect to login if not logged in
+    setPage("login");
   };
 
   if (!user) {

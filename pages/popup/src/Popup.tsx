@@ -40,6 +40,13 @@ const Popup = () => {
         }
       }
 
+      if (
+        !userState.isLoggedIn &&
+        (page === "main" || page === "settings" || page === "profile")
+      ) {
+        setPage("login");
+      }
+
       if (userState.isLoggedIn && page === "login") {
         setPage("main");
       }
