@@ -64,53 +64,32 @@ export default function MainPage() {
   }, []);
 
   return (
-    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+    <ul className="results-list">
       {results.length === 0 ? (
         <p>No results yet</p>
       ) : (
         results.map((r, idx) => (
-          <li key={idx} style={{ marginBottom: 12 }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  fontWeight: "semibold",
-                  fontSize: 16,
-                  color: "#000000",
-                  padding: "16px 0px",
-                }}
-              >
-                {getDomainFromLink(r.link)}
-              </div>
+          <li key={idx} className="result-item">
+            <div className="result-row" onClick={() => toggleExpand(idx)}>
+              <div className="result-title">{getDomainFromLink(r.link)}</div>
 
-              <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <div className="result-actions">
                 <ColorButton
                   title={r.badgeInfo.title}
                   link={r.badgeInfo.link}
                 />
                 <img
                   src={r.expanded ? Arrowdown : Arrowup}
-                  style={{ width: 16, height: 16, cursor: "pointer" }}
-                  onClick={() => toggleExpand(idx)}
+                  className="arrow-icon"
                 />
               </div>
             </div>
 
             {/* 확장 영역 */}
             <div
-              style={{
-                height: r.expanded ? 96 : 0,
-                overflow: "hidden",
-                transition: "height 0.3s",
-              }}
+              className={`expand-area ${r.expanded ? "expanded" : "collapsed"}`}
             >
-              {r.expanded && <p style={{ margin: 0 }}>여기에 추가 공간</p>}
+              {r.expanded && <p className="expand-content">여기에 추가 공간</p>}
             </div>
           </li>
         ))
