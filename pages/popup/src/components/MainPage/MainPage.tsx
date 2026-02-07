@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Arrowup from "@src/../public/icons/arrow_up.svg";
 import Arrowdown from "@src/../public/icons/arrow_down.svg";
 import ColorButton from "@src/components/ColorButton/ColorButton";
+import ReloadIcon from "@src/../public/icons/reload.svg";
 
 interface Result {
   link: string;
@@ -66,7 +67,29 @@ export default function MainPage() {
   return (
     <ul className="results-list">
       {results.length === 0 ? (
-        <p>No results yet</p>
+        <div className="reload-wrapper">
+          <div
+            className="reload-button"
+            onClick={() => {
+              chrome.tabs.query(
+                { active: true, currentWindow: true },
+                (tabs) => {
+                  if (tabs[0]?.id) {
+                    chrome.tabs.reload(tabs[0].id);
+                  }
+                },
+              );
+            }}
+          >
+            <div className="reload-button-content">
+              <img src={ReloadIcon} alt="Reload" />
+              <div className="reload-button-text">새로고침</div>
+            </div>
+          </div>
+          <p className="reload-help-text">
+            구글 검색 결과 페이지가 맞는지 확인해주세요.
+          </p>
+        </div>
       ) : (
         results.map((r, idx) => (
           <li key={idx} className="result-item">

@@ -58,3 +58,51 @@
 .expand-content {
   margin: 0;
 }
+
+/* 리로드 버튼 */
+.reload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.reload-button:hover {
+  background-color: #333333;
+}
+
+.reload-button-content {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.reload-button-content img {
+  width: 16px;
+}
+
+.reload-button-text {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.reload-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.reload-help-text {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #888888;
+  text-align: center;
+}
