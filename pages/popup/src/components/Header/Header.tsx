@@ -3,7 +3,11 @@ import Logo from "@src/../public/logo.svg";
 import SettingIcon from "@src/../public/icons/setting.svg";
 import ProfileIcon from "@src/../public/profile.svg";
 
-export default function Header() {
+interface HeaderProps {
+  setPage: (page: "main" | "settings" | "profile") => void;
+}
+
+export default function Header({ setPage }: HeaderProps) {
   return (
     <header>
       <div className="header-container">
@@ -14,13 +18,13 @@ export default function Header() {
               src={SettingIcon}
               className="header-icon"
               alt="Settings"
-              //   onClick={() => setPage("settings")}
+              onClick={() => setPage("settings")}
             />
             <img
               src={ProfileIcon}
               className="profile-icon"
               alt="Profile"
-              //   onClick={() => setPage("profile")}
+              onClick={() => setPage("profile")}
             />
           </div>
         </div>
