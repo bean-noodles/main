@@ -1,1 +1,42 @@
-@import '@extension/ui/global.css';
+@import "@extension/ui/global.css";
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
+.mainBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Pretendard Variable";
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  border-radius: 6px;
+  padding: 0 6px;
+  height: 22px;
+  width: 58px;
+}
+
+.badge-green {
+  background-color: #059669;
+}
+
+.badge-yellow {
+  background-color: #ca8a04;
+}
+
+.badge-red {
+  background-color: #dc2626;
+}
+
+.badge-grey {
+  background-color: #525252;
+}
